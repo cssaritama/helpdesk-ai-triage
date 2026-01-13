@@ -1,0 +1,34 @@
+name: Deploy (Cloud Run)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      # This workflow is intentionally template-like.
+      # You can use Workload Identity Federation or a service account key.
+      # For security best practices, prefer WIF.
+      #
+      # Required secrets (example):
+      # - GCP_PROJECT_ID
+      # - GCP_REGION
+      # - GAR_REPO (Artifact Registry repo name)
+      # - CLOUD_RUN_SERVICE (service name)
+      # - DATABASE_URL (production)
+      # - OPENAI_API_KEY (optional)
+      #
+      # Auth step depends on your chosen method.
+
+      - name: Set up gcloud (placeholder)
+        run: |
+          echo "Configure GCP auth here (WIF recommended)."
+
+      - name: Build and deploy (placeholder)
+        run: |
+          echo "Build backend image and deploy to Cloud Run here."

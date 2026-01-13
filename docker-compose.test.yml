@@ -1,0 +1,9 @@
+services:
+  backend:
+    environment:
+      APP_ENV: test
+      DATABASE_URL: postgresql+psycopg://app:app@db:5432/app
+      LLM_MODE: mock
+      EMBEDDINGS_MODE: mock
+      LOG_LEVEL: WARNING
+    command: ["bash", "-lc", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
