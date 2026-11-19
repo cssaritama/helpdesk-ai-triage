@@ -20,7 +20,7 @@ The system supports two modes:
 - Predictable outputs for classification and reply generation.
 - Fully offline test execution.
 
-2) `LLM_MODE=real`, `EMBEDDINGS_MODE=real` (production)
+2) `LLM_MODE=real`, `EMBEDDINGS_MODE=real` (planned; not implemented yet)
 - Requires provider keys (e.g., OPENAI_API_KEY).
 - Used only in deployed environments.
 
