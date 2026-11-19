@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "helpdesk_backend"
 version = "1.0.0"
@@ -22,6 +26,10 @@ dev = [
   "pytest-asyncio==0.24.0",
   "ruff==0.8.4",
 ]
+
+[tool.setuptools.packages.find]
+# Install the application package only; alembic/ holds migrations, not a package.
+include = ["app*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
