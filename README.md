@@ -28,7 +28,7 @@ This project delivers an AI-assisted helpdesk system that:
 - Produces a suggested reply with citations to KB articles.
 - Persists tickets, triage outputs, KB articles, and suggestions for auditability.
 - Exposes capabilities via OpenAPI and via an MCP-style tool server for agent workflows.
-- Remains fully reproducible: deterministic mock AI for CI/tests, real-provider mode for deployment.
+- Fully reproducible: deterministic mock AI for CI and tests. A real-provider mode is planned; `backend/app/clients/llm_client.py` does not implement it yet, and triage uses keyword rules.
 
 ---
 
@@ -47,7 +47,7 @@ This project delivers an AI-assisted helpdesk system that:
 - Database: SQLite (dev) and Postgres (docker-compose / production-like)
 - MCP tool server: FastAPI HTTP tool registry (MCP-inspired)
 - Containerization: Docker + docker-compose
-- CI/CD: GitHub Actions (tests + Cloud Run deploy workflow)
+- CI: GitHub Actions runs the tests. The Cloud Run workflow is a template and does not deploy yet.
 
 Architecture details: `docs/architecture/*`
 
@@ -200,7 +200,7 @@ Properties:
 - No external dependencies
 - Suitable for unit/integration tests and peer-review reproducibility
 
-### Real provider mode (deployment)
+### Real provider mode (planned, not implemented)
 - `LLM_MODE=real`, `EMBEDDINGS_MODE=real`
 - Provide provider credentials (e.g., `OPENAI_API_KEY`)
 
@@ -223,16 +223,15 @@ Docs: `docs/mcp/README.md`
 Guide:
 - `docs/deployment/cloud-run.md`
 
-Evaluation proof requirement:
-- Add screenshot of a successful request to the deployed endpoint at:
-  - `docs/deployment/cloud-run-proof.png`
+Deployment status: not deployed. When it is, add a screenshot of a successful request at
+`docs/deployment/cloud-run-proof.png`.
 
 ---
 
 ## CI/CD
 
 - `.github/workflows/ci.yml` runs backend + frontend tests on push/PR.
-- `.github/workflows/deploy-cloud-run.yml` deploys on push to `main` (after WIF auth).
+- `.github/workflows/deploy-cloud-run.yml` is a template: it runs on push to `main` but only prints placeholders until authentication and deployment steps are added.
 
 ---
 
