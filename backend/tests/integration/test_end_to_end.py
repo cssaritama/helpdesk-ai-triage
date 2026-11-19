@@ -1,6 +1,10 @@
 import os
 import time
 import httpx
+import pytest
+
+# Needs the backend and Postgres from docker compose; `make test-integration` sets INTEGRATION=1.
+pytestmark = pytest.mark.skipif(os.getenv("INTEGRATION") != "1", reason="set INTEGRATION=1 to run against docker compose")
 
 BASE_URL = os.getenv("BASE_URL", "http://localhost:8000")
 
